@@ -1,9 +1,9 @@
-function Statictics() {
+function Statistics() {
   return (
     <div>
-      <h1>Statictics</h1>
+      <h1>Statistics</h1>
     </div>
   );
 }
 
-export default Statictics;
+export default Statistics;
