@@ -1,3 +1,5 @@
+@import "./helper.scss";
+
 * {
     margin: 0;
     padding: 0;
@@ -20,4 +22,10 @@ a {
 ul,
 ol {
     list-style: none;
+}
+
+body {
+    font-family: $font-hei;
+    font-size: 16px;
+    line-height: 1.2;
 }

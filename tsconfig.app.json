@@ -5,14 +5,15 @@
     "useDefineForClassFields": true,
     "lib": ["ES2023", "DOM", "DOM.Iterable"],
     "module": "ESNext",
-    "types": ["vite/client"],
+    "types": ["vite/client", "vite-plugin-svgr/client"],
     "skipLibCheck": true,
     "baseUrl": ".",
     "paths": {
       "@/*": ["src/*"],
       "@components/*": ["src/components/*"],
       "@assets/*": ["src/assets/*"],
-      "@domains/*": ["src/domains/*"]
+      "@icons/*": ["src/icons/*"],
+      "@views/*": ["src/views/*"]
     },
     /* Bundler mode */
     "moduleResolution": "bundler",

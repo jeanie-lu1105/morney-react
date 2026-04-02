@@ -1,7 +1,7 @@
 import { createBrowserRouter, Navigate } from "react-router-dom";
-import Tags from "./components/Tags";
-import Money from "./components/Money";
-import Statistics from "./components/Statistics";
+import Tags from "@components/Tags";
+import Money from "@components/Money";
+import Statistics from "@components/Statistics";
 
 const router = createBrowserRouter([
   {
