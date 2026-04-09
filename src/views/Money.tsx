@@ -107,8 +107,8 @@ function Money() {
                 </ul>
             </CategorySection>
             <NumberPadSection>
-                <div>100</div>
-                <div>
+                <div className="output">100</div>
+                <div className="pad">
                     {NumberPadOptions.map((option) => (
                         <button key={option}>{option}</button>
                     ))}
