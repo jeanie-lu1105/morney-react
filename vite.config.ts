@@ -15,5 +15,21 @@ export default defineConfig({
       "@constants": path.resolve(__dirname, "./src/constants"),
     },
   },
-  plugins: [react(), svgr()],
+  plugins: [
+    react(),
+    svgr({
+      svgrOptions: {
+        svgoConfig: {
+          plugins: [
+            {
+              name: "removeAttrs",
+              params: {
+                attrs: "(fill|stroke)",
+              },
+            },
+          ],
+        },
+      },
+    }),
+  ],
 });

@@ -4,16 +4,42 @@ export const ICONS = [
   {
     icon: ICONS_MAP.bookmark,
     to: "/tags",
-    displayName: "标签页面",
+    id: "tags",
+    displayName: "标签页",
   },
   {
     icon: ICONS_MAP.money,
     to: "/money",
-    displayName: "记账页面",
+    id: "money",
+    displayName: "记账页",
   },
   {
     icon: ICONS_MAP.chart,
     to: "/statistics",
-    displayName: "统计页面",
+    id: "statistics",
+    displayName: "统计页",
   },
 ];
+
+export const NumberPadOptions = [
+  1,
+  2,
+  3,
+  "+",
+  "Del",
+  4,
+  5,
+  6,
+  "-",
+  "Clear",
+  7,
+  8,
+  9,
+  "x",
+  "/",
+  0,
+  ".",
+  "=",
+];
+
+export const TagList = ["衣", "食", "住", "行"];

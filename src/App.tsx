@@ -3,10 +3,13 @@ import Tags from "@/views/Tags";
 import Money from "@/views/Money";
 import Statistics from "@/views/Statistics";
 import ErrorPage from "./components/Error";
-
+import styled from "styled-components";
+const AppWrapper = styled.div`
+  color: #333;
+`;
 function App() {
   return (
-    <>
+    <AppWrapper>
       <Routes>
         <Route path="/" element={<Navigate to="/money" />} />
         <Route path="/tags" element={<Tags />} />
@@ -14,7 +17,7 @@ function App() {
         <Route path="/statistics" element={<Statistics />} />
         <Route path="*" element={<ErrorPage message="Page not found" />} />
       </Routes>
-    </>
+    </AppWrapper>
   );
 }
 
