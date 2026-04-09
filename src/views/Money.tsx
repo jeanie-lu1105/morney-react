@@ -1,5 +1,5 @@
 import Layout from "@/components/Layout";
-import { NumberPadOptions, TagList } from "@/constants/icon.const";
+import { NumberPadOptions } from "@/constants/icon.const";
 import TagsSection from "@/views/money/TagsSection";
 import { NotesSection } from "@/views/money/NotesSection";
 import { CategorySection } from "@/views/money/CategorySection";
@@ -8,14 +8,7 @@ import { NumberPadSection } from "@/views/money/NumberPad";
 function Money() {
   return (
     <Layout>
-      <TagsSection className="tags">
-        <ol>
-          {TagList.map((tag) => (
-            <li key={tag}>{tag}</li>
-          ))}
-        </ol>
-        <button>新增标签</button>
-      </TagsSection>
+      <TagsSection></TagsSection>
       <NotesSection>
         <label>
           <span>备注</span>
