@@ -5,8 +5,11 @@ import styled from "styled-components";
 const TagsSection = styled.section`
   flex-grow: 1;
   background-color: #fff;
-  border: 1px solid red;
   padding: 12px 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-end;
 
   > ol {
     margin: 0 -12px;
