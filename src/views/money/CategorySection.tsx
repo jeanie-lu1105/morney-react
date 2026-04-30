@@ -37,16 +37,7 @@ const Wrapper = styled.section`
 const CategorySection: React.FC = () => {
   const categoryMap = { "-": "支出", "+": "收入" };
   type TCategory = keyof typeof categoryMap;
-  //   const [categoryList] = useState<TCategory[]>([
-  //     {
-  //       displayName: "支出",
-  //       label: "-",
-  //     },
-  //     {
-  //       displayName: "收入",
-  //       label: "+",
-  //     },
-  //   ]);
+
   const [category, setCategory] = useState("-");
   const [categoryList] = useState<TCategory[]>(["-", "+"]);
   return (

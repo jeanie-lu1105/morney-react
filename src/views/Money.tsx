@@ -2,7 +2,7 @@ import Layout from "@/components/Layout";
 import TagsSection from "@/views/money/TagsSection";
 import { NotesSection } from "@/views/money/NotesSection";
 import { CategorySection } from "@/views/money/CategorySection";
-import { NumberPadSection } from "@/views/money/NumberPad";
+import { NumberPadSection } from "@/views/money/NumberPadSection";
 
 function Money() {
   return (

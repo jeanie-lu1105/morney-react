@@ -1,6 +1,3 @@
-import { NumberPadOptions } from "@/constants/icon.const";
-import type React from "react";
-import { useState } from "react";
 import styled from "styled-components";
 
 const Wrapper = styled.section`
@@ -77,40 +74,4 @@ const Wrapper = styled.section`
   }
 `;
 
-const NumberPadSection: React.FC = () => {
-  const [output, setOutput] = useState("0");
-  const onClickNumber = (e: React.MouseEvent) => {
-    const text = (e.target as HTMLButtonElement).textContent;
-    if (text === null) {
-      return;
-    }
-    if (text === "OK") {
-      alert("OK");
-      return;
-    }
-    console.log(text);
-    if (text === "Del") {
-      setOutput((output) => output.slice(0, -1) || "0");
-      return;
-    }
-    if (text === "Clear") {
-      setOutput("0");
-    }
-    setOutput(output + text);
-  };
-
-  return (
-    <Wrapper>
-      <div className="output">{output}</div>
-      <div className="pad clearfix" onClick={(e) => onClickNumber(e)}>
-        {NumberPadOptions.map((option) => (
-          <button className={option === "OK" ? "ok" : ""} key={option}>
-            {option}
-          </button>
-        ))}
-      </div>
-    </Wrapper>
-  );
-};
-
-export { NumberPadSection };
+export { Wrapper };
