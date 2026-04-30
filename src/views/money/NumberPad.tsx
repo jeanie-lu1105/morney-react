@@ -78,7 +78,7 @@ const Wrapper = styled.section`
 `;
 
 const NumberPadSection: React.FC = () => {
-  const [output, setOutput] = useState<number>(0);
+  const [output, setOutput] = useState("0");
   const onClickNumber = (e: React.MouseEvent) => {
     const text = (e.target as HTMLButtonElement).textContent;
     if (text === null) {
@@ -88,11 +88,15 @@ const NumberPadSection: React.FC = () => {
       alert("OK");
       return;
     }
-    if (text === "删除") {
-      setOutput((output) => Math.floor(output / 10));
+    console.log(text);
+    if (text === "Del") {
+      setOutput((output) => output.slice(0, -1) || "0");
       return;
     }
-    setOutput((output) => parseFloat(output + text));
+    if (text === "Clear") {
+      setOutput("0");
+    }
+    setOutput(output + text);
   };
 
   return (
