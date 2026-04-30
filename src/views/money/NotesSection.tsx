@@ -1,6 +1,8 @@
+/* eslint-disable react-hooks/rules-of-hooks */
+import { useRef, useState } from "react";
 import styled from "styled-components";
 
-export const NotesSection = styled.section`
+const Wrapper = styled.section`
   padding: 10px 16px;
   background-color: #f5f5f5;
   font-size: 14px;
@@ -25,3 +27,35 @@ export const NotesSection = styled.section`
     }
   }
 `;
+
+const NotesSection: React.FC = () => {
+  const [note, setNote] = useState<string>("");
+  const refInput = useRef<HTMLInputElement>(null);
+  const onBlur = () => {
+    if (refInput.current !== null) {
+      setNote(refInput.current.value);
+    }
+  };
+  return (
+    <Wrapper>
+      <label>
+        <span>备注</span>
+        <input
+          type="text"
+          placeholder="Please Add Comments"
+          ref={refInput}
+          defaultValue={note}
+          onBlur={onBlur}
+        />
+        {/* <input
+          type="text"
+          placeholder="在这里添加备注"
+          value={note}
+          onChange={(e) => setNote(e.target.value)}
+        /> */}
+      </label>
+    </Wrapper>
+  );
+};
+
+export { NotesSection };

@@ -1,6 +1,9 @@
+import { NumberPadOptions } from "@/constants/icon.const";
+import type React from "react";
+import { useState } from "react";
 import styled from "styled-components";
 
-export const NumberPadSection = styled.section`
+const Wrapper = styled.section`
   display: flex;
   flex-direction: column;
 
@@ -73,3 +76,37 @@ export const NumberPadSection = styled.section`
     }
   }
 `;
+
+const NumberPadSection: React.FC = () => {
+  const [output, setOutput] = useState<number>(0);
+  const onClickNumber = (e: React.MouseEvent) => {
+    const text = (e.target as HTMLButtonElement).textContent;
+    if (text === null) {
+      return;
+    }
+    if (text === "OK") {
+      alert("OK");
+      return;
+    }
+    if (text === "删除") {
+      setOutput((output) => Math.floor(output / 10));
+      return;
+    }
+    setOutput((output) => parseFloat(output + text));
+  };
+
+  return (
+    <Wrapper>
+      <div className="output">{output}</div>
+      <div className="pad clearfix" onClick={(e) => onClickNumber(e)}>
+        {NumberPadOptions.map((option) => (
+          <button className={option === "OK" ? "ok" : ""} key={option}>
+            {option}
+          </button>
+        ))}
+      </div>
+    </Wrapper>
+  );
+};
+
+export { NumberPadSection };

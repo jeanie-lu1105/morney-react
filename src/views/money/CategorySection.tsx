@@ -1,6 +1,8 @@
+import type React from "react";
+import { useState } from "react";
 import styled from "styled-components";
 
-export const CategorySection = styled.section`
+const Wrapper = styled.section`
   font-size: 24px;
 
   > ul {
@@ -26,3 +28,44 @@ export const CategorySection = styled.section`
     }
   }
 `;
+
+// type TCategory = {
+//   displayName: string;
+//   label: "-" | "+";
+// };
+
+const CategorySection: React.FC = () => {
+  const categoryMap = { "-": "支出", "+": "收入" };
+  type TCategory = keyof typeof categoryMap;
+  //   const [categoryList] = useState<TCategory[]>([
+  //     {
+  //       displayName: "支出",
+  //       label: "-",
+  //     },
+  //     {
+  //       displayName: "收入",
+  //       label: "+",
+  //     },
+  //   ]);
+  const [category, setCategory] = useState("-");
+  const [categoryList] = useState<TCategory[]>(["-", "+"]);
+  return (
+    <Wrapper>
+      <ul>
+        {categoryList.map((c: TCategory) => (
+          <li
+            key={c}
+            className={category === c ? "selected" : ""}
+            onClick={() => {
+              setCategory(c);
+            }}
+          >
+            {categoryMap[c]}
+          </li>
+        ))}
+      </ul>
+    </Wrapper>
+  );
+};
+
+export { CategorySection };

@@ -40,7 +40,7 @@ export const NumberPadOptions = [
     0,
     ".",
     "%",
-    "+",
+    "/",
 ];
 
 export const TagList = ["衣", "食", "住", "行"];
