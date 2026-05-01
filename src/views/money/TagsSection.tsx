@@ -41,16 +41,17 @@ const Wrapper = styled.section`
     margin-top: 10px;
   }
 `;
+type Props = { value: string[]; onChange: (tags: string[]) => void };
 
-const TagsSection: React.FC = () => {
+const TagsSection: React.FC<Props> = (props) => {
   const [tags, setTags] = useState<string[]>(TagList);
-  const [selectedTags, setSelectedTags] = useState<string[]>([]);
+  const selectedTags = props.value || [];
   const onToggleTag = (tag: string) => {
     const index = selectedTags.indexOf(tag);
     if (index > -1) {
-      setSelectedTags(selectedTags.filter((t) => t !== tag));
+      props.onChange(selectedTags.filter((t) => t !== tag));
     } else {
-      setSelectedTags([...selectedTags, tag]);
+      props.onChange([...selectedTags, tag]);
     }
   };
   const getClass = (tag: string) =>

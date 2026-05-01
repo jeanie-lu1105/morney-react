@@ -1,21 +1,21 @@
 import { NumberPadOptions } from "@/constants/icon.const";
 import type React from "react";
-import { useState } from "react";
 import { Wrapper } from "./NumberPadSection/Wrapper";
 import {
   generateOutput,
   type TButton,
 } from "./NumberPadSection/generateOutput";
 
-const NumberPadSection: React.FC = () => {
-  const [output, _setOutput] = useState("0");
+type TProps = { value: number; onChange: (value: number) => void };
+const NumberPadSection: React.FC<TProps> = (props) => {
+  const output = props.value.toString();
   const setOutput = (value: string) => {
     if (value.length > 16) {
       value = value.slice(0, 16);
     } else if (value.length === 0) {
       value = "0";
     }
-    _setOutput(value);
+    props.onChange(parseFloat(value));
   };
   const onClickNumber = (e: React.MouseEvent) => {
     const text = (e.target as HTMLButtonElement).textContent as TButton;
