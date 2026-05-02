@@ -2,6 +2,7 @@ import { createBrowserRouter, Navigate } from "react-router-dom";
 import Tags from "@/views/Tags";
 import Money from "@/views/Money";
 import Statistics from "@/views/Statistics";
+import { Tag } from "./views/Tag";
 
 const router = createBrowserRouter([
   {
@@ -13,6 +14,12 @@ const router = createBrowserRouter([
   {
     path: "tags",
     Component: Tags,
+    children: [
+      {
+        path: "/tags/:tag",
+        Component: Tag,
+      },
+    ],
   },
   {
     path: "money",

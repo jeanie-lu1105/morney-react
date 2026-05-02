@@ -2,6 +2,7 @@ import Icon from "@/components/Icon";
 import Layout from "@/components/Layout";
 import { ICONS_MAP } from "@/icons";
 import { useTags } from "@/useTags";
+import { Link } from "react-router";
 import styled from "styled-components";
 
 const TagList = styled.ol`
@@ -11,12 +12,15 @@ const TagList = styled.ol`
   > li {
     //5e5e7
     border-bottom: 1px solid #d5d5d9;
-    padding: 12px 16px 12px 0;
-    line-height: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
     margin-left: 16px;
+    line-height: 20px;
+
+    > a {
+      align-items: center;
+      justify-content: space-between;
+      display: flex;
+      padding: 12px 16px 12px 0;
+    }
   }
 `;
 
@@ -49,8 +53,10 @@ function Tags() {
       <TagList>
         {tags.map((tag) => (
           <li key={tag}>
-            <span className="oneLine">{tag}</span>
-            <Icon icon={ICONS_MAP.right} displayName="right" />
+            <Link to={`/tags/${tag}`}>
+              <span className="oneLine">{tag}</span>
+              <Icon icon={ICONS_MAP.right} displayName="right" />
+            </Link>
           </li>
         ))}
       </TagList>
