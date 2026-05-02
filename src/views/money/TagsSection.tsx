@@ -3,6 +3,7 @@
 /* eslint-disable react-refresh/only-export-components */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { TagList } from "@/constants/icon.const";
+import { useTags } from "@/useTags";
 import { useState } from "react";
 import styled from "styled-components";
 
@@ -44,7 +45,7 @@ const Wrapper = styled.section`
 type Props = { value: string[]; onChange: (tags: string[]) => void };
 
 const TagsSection: React.FC<Props> = (props) => {
-  const [tags, setTags] = useState<string[]>(TagList);
+  const { tags, setTags } = useTags();
   const selectedTags = props.value || [];
   const onToggleTag = (tag: string) => {
     const index = selectedTags.indexOf(tag);
