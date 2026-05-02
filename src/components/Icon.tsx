@@ -4,7 +4,7 @@ type TIcon = {
   icon: React.FC<React.SVGProps<SVGSVGElement>>;
   color?: string;
   class?: string;
-  to: string;
+  to?: string;
   displayName: string;
 };
 
@@ -12,7 +12,7 @@ const Icon = (props: TIcon) => {
   return (
     <>
       <props.icon fill={props.color || "grey"} className="icon" />
-      <Link to={props.to}>{props.displayName}</Link>
+      {props.to && <Link to={props.to}>{props.displayName}</Link>}
     </>
   );
 };
