@@ -1,3 +1,4 @@
+import { createId } from "@/lib/createId";
 import { ICONS_MAP } from "@icons/index";
 
 export const ICONS = [
@@ -44,8 +45,8 @@ export const NumberPadOptions = [
 ];
 
 export const TagList = [
-  { id: 1, name: "衣" },
-  { id: 2, name: "食" },
-  { id: 3, name: "住" },
-  { id: 4, name: "行" },
+  { id: createId(), name: "衣" },
+  { id: createId(), name: "食" },
+  { id: createId(), name: "住" },
+  { id: createId(), name: "行" },
 ];

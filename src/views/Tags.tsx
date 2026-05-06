@@ -2,6 +2,7 @@
 import Icon from "@/components/Icon";
 import Layout from "@/components/Layout";
 import { ICONS_MAP } from "@/icons";
+import { createId } from "@/lib/createId";
 import { useTags } from "@/useTags";
 import { Link } from "react-router";
 import styled from "styled-components";
@@ -52,7 +53,7 @@ function Tags() {
   const onAddTag = () => {
     const tagName = window.prompt("Please enter the New Tag Name") || "";
     if (!!tagName) {
-      setTags([...tags, { id: Math.random(), name: tagName }]);
+      setTags([...tags, { id: createId(), name: tagName }]);
     } else {
       console.log("Tag name cannot be empty");
     }

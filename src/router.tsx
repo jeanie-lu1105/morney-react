@@ -16,7 +16,7 @@ const router = createBrowserRouter([
     Component: Tags,
     children: [
       {
-        path: "/tags/:tag",
+        path: "/tags/:id",
         Component: Tag,
       },
     ],
