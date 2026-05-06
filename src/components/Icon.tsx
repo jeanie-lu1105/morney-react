@@ -1,14 +1,16 @@
 import { Link } from "react-router-dom";
 
 type TIcon = {
-  icon: React.FC<React.SVGProps<SVGSVGElement>>;
+  icon?: React.FC<React.SVGProps<SVGSVGElement>>;
   color?: string;
   class?: string;
   to?: string;
-  displayName: string;
+  displayName?: string;
 };
 
 const Icon = (props: TIcon) => {
+  if (!props.icon)
+    return <span style={{ width: "16px", height: "16px" }}></span>;
   return (
     <>
       <props.icon fill={props.color || "grey"} className="icon" />

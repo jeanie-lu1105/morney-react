@@ -5,6 +5,7 @@ import Layout from "@/components/Layout";
 import styled from "styled-components";
 import Icon from "@/components/Icon";
 import { ICONS_MAP } from "@/icons";
+import { Button } from "@/components/Button";
 
 const Wrapper = styled.div`
   display: flex;
@@ -26,6 +27,15 @@ type Params = {
   id: string;
 };
 
+const TopBar = styled.header`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px;
+  line-height: 20px;
+  background-color: #fff;
+`;
+
 const Tag: React.FC = () => {
   const { findTag } = useTags();
   const { id } = useParams<Params>();
@@ -40,13 +50,19 @@ const Tag: React.FC = () => {
   return (
     <Layout>
       <Wrapper>
-        <div>
+        <TopBar>
           <Icon icon={ICONS_MAP.left} displayName="left"></Icon>
-          <div>编辑标签</div>
+          <span>编辑标签</span>
+          <Icon />
+        </TopBar>
+        <div>
+          <label>
+            <span>标签名</span>
+            <input type="text" value={tag.name} />
+          </label>
         </div>
         <div>
-          <label htmlFor="name">标签名</label>
-          <input type="text" id="name" value={tag.name} />
+          <Button>删除标签</Button>
         </div>
       </Wrapper>
     </Layout>
