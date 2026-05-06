@@ -7,7 +7,7 @@ import { useState } from "react";
 
 function Money() {
   const [selected, setSelected] = useState({
-    tags: [] as string[],
+    tagIds: [] as number[],
     note: "",
     category: "-" as TCategory,
     amount: 0,
@@ -21,8 +21,8 @@ function Money() {
   return (
     <Layout>
       <TagsSection
-        value={selected.tags}
-        onChange={(tags) => updateSelected({ tags })}
+        value={selected.tagIds}
+        onChange={(tagIds) => updateSelected({ tagIds })}
       ></TagsSection>
       <NotesSection
         value={selected.note}

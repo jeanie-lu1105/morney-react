@@ -42,25 +42,27 @@ const Wrapper = styled.section`
     margin-top: 10px;
   }
 `;
-type Props = { value: string[]; onChange: (tags: string[]) => void };
+type Props = { value: number[]; onChange: (tags: number[]) => void };
 
 const TagsSection: React.FC<Props> = (props) => {
   const { tags, setTags } = useTags();
-  const selectedTags = props.value || [];
-  const onToggleTag = (tag: string) => {
-    const index = selectedTags.indexOf(tag);
+  const selectedTagIds = props.value || [];
+  const onToggleTag = (tagId: number) => {
+    const tag = tags.find((t) => t.id === tagId);
+    if (!tag) return;
+    const index = selectedTagIds.indexOf(tagId);
     if (index > -1) {
-      props.onChange(selectedTags.filter((t) => t !== tag));
+      props.onChange(selectedTagIds.filter((t) => t !== tagId));
     } else {
-      props.onChange([...selectedTags, tag]);
+      props.onChange([...selectedTagIds, tagId]);
     }
   };
-  const getClass = (tag: string) =>
-    selectedTags.indexOf(tag) > -1 ? "selected" : "";
+  const getClass = (tagId: number) =>
+    selectedTagIds.indexOf(tagId) > -1 ? "selected" : "";
   const onAddTag = () => {
     const tagName = window.prompt("Please enter the New Tag Name");
     if (!!tagName) {
-      setTags([...tags, tagName]);
+      setTags([...tags, { id: Math.random(), name: tagName }]);
     }
   };
 
@@ -69,11 +71,11 @@ const TagsSection: React.FC<Props> = (props) => {
       <ol>
         {tags.map((tag) => (
           <li
-            className={getClass(tag)}
-            key={tag}
-            onClick={() => onToggleTag(tag)}
+            className={getClass(tag.id)}
+            key={tag.id}
+            onClick={() => onToggleTag(tag.id)}
           >
-            {tag}
+            {tag.name}
           </li>
         ))}
       </ol>

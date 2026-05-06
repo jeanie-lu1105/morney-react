@@ -1,3 +1,4 @@
+/* eslint-disable no-extra-boolean-cast */
 import Icon from "@/components/Icon";
 import Layout from "@/components/Layout";
 import { ICONS_MAP } from "@/icons";
@@ -48,13 +49,21 @@ const Spaces = styled.div`
 
 function Tags() {
   const { tags, setTags } = useTags();
+  const onAddTag = () => {
+    const tagName = window.prompt("Please enter the New Tag Name") || "";
+    if (!!tagName) {
+      setTags([...tags, { id: Math.random(), name: tagName }]);
+    } else {
+      console.log("Tag name cannot be empty");
+    }
+  };
   return (
     <Layout>
       <TagList>
         {tags.map((tag) => (
-          <li key={tag}>
-            <Link to={`/tags/${tag}`}>
-              <span className="oneLine">{tag}</span>
+          <li key={tag.id}>
+            <Link to={`/tags/${tag.id}`}>
+              <span className="oneLine">{tag.name}</span>
               <Icon icon={ICONS_MAP.right} displayName="right" />
             </Link>
           </li>
@@ -63,7 +72,7 @@ function Tags() {
 
       <Center>
         <Spaces />
-        <Button onClick={() => setTags(["new tag"])}>Add tag</Button>
+        <Button onClick={onAddTag}>Add tag</Button>
       </Center>
     </Layout>
   );
