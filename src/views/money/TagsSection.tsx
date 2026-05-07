@@ -2,7 +2,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable react-refresh/only-export-components */
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { useTags } from "@/useTags";
+import { useTags } from "@/hooks/useTags";
 import styled from "styled-components";
 
 const Wrapper = styled.section`
@@ -43,7 +43,7 @@ const Wrapper = styled.section`
 type Props = { value: number[]; onChange: (tags: number[]) => void };
 
 const TagsSection: React.FC<Props> = (props) => {
-  const { tags, setTags } = useTags();
+  const { tags, addTag } = useTags();
   const selectedTagIds = props.value || [];
   const onToggleTag = (tagId: number) => {
     const tag = tags.find((t) => t.id === tagId);
@@ -57,12 +57,6 @@ const TagsSection: React.FC<Props> = (props) => {
   };
   const getClass = (tagId: number) =>
     selectedTagIds.indexOf(tagId) > -1 ? "selected" : "";
-  const onAddTag = () => {
-    const tagName = window.prompt("Please enter the New Tag Name");
-    if (!!tagName) {
-      setTags([...tags, { id: Math.random(), name: tagName }]);
-    }
-  };
 
   return (
     <Wrapper>
@@ -77,7 +71,7 @@ const TagsSection: React.FC<Props> = (props) => {
           </li>
         ))}
       </ol>
-      <button onClick={onAddTag}>新增标签</button>
+      <button onClick={addTag}>新增标签</button>
     </Wrapper>
   );
 };

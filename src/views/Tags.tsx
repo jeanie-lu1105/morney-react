@@ -4,8 +4,7 @@ import Icon from "@/components/Icon";
 import Layout from "@/components/Layout";
 import { Spaces } from "@/components/Space";
 import { ICONS_MAP } from "@/icons";
-import { createId } from "@/lib/createId";
-import { useTags } from "@/useTags";
+import { useTags } from "@/hooks/useTags";
 import { Link } from "react-router";
 import styled from "styled-components";
 
@@ -40,19 +39,12 @@ const Button = styled.button`
 `;
 
 function Tags() {
-  const { tags, setTags } = useTags();
-  const onAddTag = () => {
-    const tagName = window.prompt("Please enter the New Tag Name") || "";
-    if (!!tagName) {
-      setTags([...tags, { id: createId(), name: tagName }]);
-    } else {
-      console.log("Tag name cannot be empty");
-    }
-  };
+  const { tags, addTag } = useTags();
+
   return (
     <Layout>
       <TagList>
-        {tags.map((tag) => (
+        {tags?.map((tag) => (
           <li key={tag.id}>
             <Link to={`/tags/${tag.id}`}>
               <span className="oneLine">{tag.name}</span>
@@ -64,7 +56,9 @@ function Tags() {
 
       <Center>
         <Spaces />
-        <Button onClick={onAddTag}>Add tag</Button>
+        <Spaces />
+        <Spaces />
+        <Button onClick={addTag}>Add tag</Button>
       </Center>
     </Layout>
   );
