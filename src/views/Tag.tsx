@@ -6,6 +6,9 @@ import styled from "styled-components";
 import Icon from "@/components/Icon";
 import { ICONS_MAP } from "@/icons";
 import { Button } from "@/components/Button";
+import { Input } from "@/components/FormItem";
+import { Center } from "@/components/Center";
+import { Spaces } from "@/components/Space";
 
 const Wrapper = styled.div`
   display: flex;
@@ -36,34 +39,60 @@ const TopBar = styled.header`
   background-color: #fff;
 `;
 
+const InputWrapper = styled.div`
+  background-color: #fff;
+  padding: 0 16px;
+  margin-top: 8px;
+`;
+
 const Tag: React.FC = () => {
-  const { findTag } = useTags();
+  const { findTag, updateTag, deleteTag } = useTags();
   const { id } = useParams<Params>();
   const tag = findTag(parseInt(id || "-1"));
-  if (!tag) {
-    return (
-      <Layout>
-        <div>Tag not found</div>
-      </Layout>
-    );
-  }
+  const onChange = (e) => {
+    updateTag(tag.id, { name: e.target.value });
+  };
+  const deleteTagToggle = () => {
+    deleteTag(tag.id);
+    window.history.back();
+  };
+
+  const tagContent = (tag: { id: number; name: string }) => (
+    <>
+      <InputWrapper>
+        <Input
+          label="标签名"
+          type="text"
+          value={tag.name}
+          placeholder="标签名"
+          onChange={onChange}
+        />
+      </InputWrapper>
+      <Center>
+        <Spaces />
+        <Spaces />
+        <Spaces />
+        <Button onClick={deleteTagToggle}>删除标签</Button>
+      </Center>
+    </>
+  );
+
   return (
     <Layout>
       <Wrapper>
         <TopBar>
-          <Icon icon={ICONS_MAP.left} displayName="left"></Icon>
+          <Icon icon={ICONS_MAP.left} displayName="left" to="/tags"></Icon>
           <span>编辑标签</span>
           <Icon />
         </TopBar>
-        <div>
-          <label>
-            <span>标签名</span>
-            <input type="text" value={tag.name} />
-          </label>
-        </div>
-        <div>
-          <Button>删除标签</Button>
-        </div>
+
+        {tag ? (
+          tagContent(tag)
+        ) : (
+          <Center>
+            <div>Tag not found</div>
+          </Center>
+        )}
       </Wrapper>
     </Layout>
   );

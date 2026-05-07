@@ -1,6 +1,8 @@
 /* eslint-disable no-extra-boolean-cast */
+import { Center } from "@/components/Center";
 import Icon from "@/components/Icon";
 import Layout from "@/components/Layout";
+import { Spaces } from "@/components/Space";
 import { ICONS_MAP } from "@/icons";
 import { createId } from "@/lib/createId";
 import { useTags } from "@/useTags";
@@ -35,17 +37,6 @@ const Button = styled.button`
   color: white;
   width: 100px;
   cursor: pointer;
-`;
-
-const Center = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-`;
-
-const Spaces = styled.div`
-  height: 16px;
 `;
 
 function Tags() {

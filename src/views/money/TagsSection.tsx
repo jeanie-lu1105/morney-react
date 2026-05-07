@@ -2,9 +2,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable react-refresh/only-export-components */
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { TagList } from "@/constants/icon.const";
 import { useTags } from "@/useTags";
-import { useState } from "react";
 import styled from "styled-components";
 
 const Wrapper = styled.section`

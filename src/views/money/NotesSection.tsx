@@ -4,7 +4,7 @@ import { type ChangeEventHandler } from "react";
 import styled from "styled-components";
 
 const Wrapper = styled.section`
-  padding: 10px 16px;
+  padding: 14px 16px;
   background-color: #f5f5f5;
   font-size: 14px;
 `;

@@ -13,8 +13,14 @@ const Icon = (props: TIcon) => {
     return <span style={{ width: "16px", height: "16px" }}></span>;
   return (
     <>
-      <props.icon fill={props.color || "grey"} className="icon" />
-      {props.to && <Link to={props.to}>{props.displayName}</Link>}
+      {props.to && (
+        <Link to={props.to}>
+          <props.icon fill={props.color || "grey"} className="icon" />
+        </Link>
+      )}
+      {!props.to && (
+        <props.icon fill={props.color || "grey"} className="icon" />
+      )}
     </>
   );
 };
