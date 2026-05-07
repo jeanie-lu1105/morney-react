@@ -53,7 +53,7 @@ const Nav = () => {
               className={({ isActive }) => generateClassName(isActive)}
             >
               <item.icon className="icon" />
-              {item.displayName}
+              {item.name}
             </NavLink>
           </li>
         ))}

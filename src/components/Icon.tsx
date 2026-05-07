@@ -1,3 +1,4 @@
+import cs from "classnames";
 import { Link } from "react-router-dom";
 
 type TIcon = {
@@ -5,14 +6,18 @@ type TIcon = {
   color?: string;
   class?: string;
   to?: string;
-  displayName?: string;
-};
+  name?: string;
+} & React.SVGAttributes<SVGSVGElement>;
 
 const Icon = (props: TIcon) => {
+  const { name, className, ...rest } = props;
   if (!props.icon)
     return <span style={{ width: "16px", height: "16px" }}></span>;
   return (
     <>
+      {/* <svg className={cs("icon", className)}>
+        <use xlinkHref={`#${name}`} />
+      </svg> */}
       {props.to && (
         <Link to={props.to}>
           <props.icon fill={props.color || "grey"} className="icon" />

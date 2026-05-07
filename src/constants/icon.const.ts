@@ -6,19 +6,19 @@ export const ICONS = [
     icon: ICONS_MAP.bookmark,
     to: "/tags",
     id: "tags",
-    displayName: "标签页",
+    name: "标签页",
   },
   {
     icon: ICONS_MAP.money,
     to: "/money",
     id: "money",
-    displayName: "记账页",
+    name: "记账页",
   },
   {
     icon: ICONS_MAP.chart,
     to: "/statistics",
     id: "statistics",
-    displayName: "统计页",
+    name: "统计页",
   },
 ];
 

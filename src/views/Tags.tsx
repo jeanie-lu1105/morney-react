@@ -56,7 +56,7 @@ function Tags() {
           <li key={tag.id}>
             <Link to={`/tags/${tag.id}`}>
               <span className="oneLine">{tag.name}</span>
-              <Icon icon={ICONS_MAP.right} displayName="right" />
+              <Icon icon={ICONS_MAP.right} name="right" />
             </Link>
           </li>
         ))}

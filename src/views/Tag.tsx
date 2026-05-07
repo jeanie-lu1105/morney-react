@@ -1,5 +1,5 @@
 import React from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useTags } from "@/useTags";
 import Layout from "@/components/Layout";
 import styled from "styled-components";
@@ -52,9 +52,10 @@ const Tag: React.FC = () => {
   const onChange = (e) => {
     updateTag(tag.id, { name: e.target.value });
   };
+  const history = useNavigate();
   const deleteTagToggle = () => {
     deleteTag(tag.id);
-    window.history.back();
+    history(-1);
   };
 
   const tagContent = (tag: { id: number; name: string }) => (
@@ -81,7 +82,7 @@ const Tag: React.FC = () => {
     <Layout>
       <Wrapper>
         <TopBar>
-          <Icon icon={ICONS_MAP.left} displayName="left" to="/tags"></Icon>
+          <Icon icon={ICONS_MAP.left} name="left" to="/tags"></Icon>
           <span>编辑标签</span>
           <Icon />
         </TopBar>
