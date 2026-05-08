@@ -1,6 +1,7 @@
 import type React from "react";
 import { useState } from "react";
 import styled from "styled-components";
+import cs from "classnames";
 
 const Wrapper = styled.section`
   font-size: 24px;
@@ -31,7 +32,11 @@ const Wrapper = styled.section`
 
 const categoryMap = { "-": "支出", "+": "收入" };
 type TCategory = keyof typeof categoryMap;
-type Props = { value: TCategory; onChange: (category: TCategory) => void };
+type Props = {
+  value: TCategory;
+  onChange: (category: TCategory) => void;
+  className: string;
+};
 const CategorySection: React.FC<Props> = (props) => {
   const category = props.value;
   const [categoryList] = useState<TCategory[]>(["-", "+"]);
@@ -41,7 +46,10 @@ const CategorySection: React.FC<Props> = (props) => {
         {categoryList.map((c: TCategory) => (
           <li
             key={c}
-            className={category === c ? "selected" : ""}
+            className={cs({
+              selected: category === c,
+              [props.className]: true,
+            })}
             onClick={() => {
               props.onChange(c);
             }}

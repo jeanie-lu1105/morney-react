@@ -18,6 +18,8 @@ const localRecords = JSON.parse(
 ) as TRecordItem[];
 
 const useRecords = () => {
+  debugger;
+  console.log(localRecords);
   const [records, setRecords] = useState<TRecordItem[]>(localRecords);
   const addRecords = (newRecord: TNewRecord) => {
     if (parseFloat(newRecord.amount) <= 0) {
@@ -39,7 +41,7 @@ const useRecords = () => {
 
   useUpdate(() => {
     localStorage.setItem("records", JSON.stringify(records));
-  }, [records]);
+  }, records);
   return { records, addRecords };
 };
 

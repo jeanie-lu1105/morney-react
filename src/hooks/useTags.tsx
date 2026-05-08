@@ -13,7 +13,7 @@ const useTags = () => {
   const [tags, setTags] = useState<TTag[]>(tagList);
   useUpdate(() => {
     localStorage.setItem("tags", JSON.stringify(tags));
-  }, [tags]);
+  }, tags);
   const addTag = () => {
     const name = window.prompt("请输入标签名") || "";
     if (!name) {
@@ -26,7 +26,11 @@ const useTags = () => {
   const updateTag = (id: number, { name }: { name: string }) =>
     setTags(tags?.map((t) => (t.id === id ? { ...t, name } : t)));
   const deleteTag = (id: number) => setTags(tags?.filter((t) => t.id !== id));
-  return { tags, setTags, addTag, findTag, updateTag, deleteTag };
+  const getTagName = (id: number) => {
+    const tag = tags?.filter((t) => t.id === id)[0];
+    return tag?.name;
+  };
+  return { tags, setTags, addTag, findTag, updateTag, deleteTag, getTagName };
 };
 
 export { useTags };
