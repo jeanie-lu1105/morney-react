@@ -31,7 +31,7 @@ const Money = () => {
     }
   };
   return (
-    <Layout>
+    <Layout scrollTop={9999}>
       <TagsSection
         value={selected.tagIds}
         onChange={(tagIds) => updateSelected({ tagIds })}

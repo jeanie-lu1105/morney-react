@@ -2,11 +2,13 @@
 
 import styled from "styled-components";
 import Nav from "./Nav";
+import type React from "react";
+import { useEffect, useRef } from "react";
 
 const Wrapper = styled.div`
   display: flex;
   height: 100vh;
-  flex-direction: column;
+  flex-direction: number;
 `;
 
 const Main = styled.main`
@@ -16,10 +18,25 @@ const Main = styled.main`
   flex-direction: column;
 `;
 
-const Layout = (props: any) => {
+type Props = {
+  className?: string;
+  children: React.ReactNode;
+  scrollTop?: number;
+};
+const Layout: React.FC<Props> = (props) => {
+  const mainRef = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    setTimeout(() => {
+      if (mainRef.current) {
+        mainRef.current.scrollTop = props.scrollTop! || 0;
+      }
+    }, 0);
+  }, [props.scrollTop]);
   return (
     <Wrapper>
-      <Main className={props.className}>{props.children}</Main>
+      <Main ref={mainRef} className={props.className} data-x={"test-111"}>
+        {props.children}
+      </Main>
       <Nav />
     </Wrapper>
   );
