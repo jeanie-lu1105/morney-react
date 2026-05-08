@@ -10,7 +10,7 @@ const defaultFormData = {
   tagIds: [] as number[],
   note: "",
   category: "-" as TCategory,
-  amount: 0,
+  amount: "0",
 };
 const Money = () => {
   const [selected, setSelected] = useState(defaultFormData);

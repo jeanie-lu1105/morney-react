@@ -18,13 +18,19 @@ const generateOutput = (text: TButton, output = "0") => {
     return "0";
   }
   switch (text) {
+    case "OK":
+      return output;
     case "Del":
       return output.slice(0, -1) || "0";
     case "Clear":
       return "0";
     case ".":
+      console.log(output);
       if (output.includes(".")) {
         return output;
+      } else if (output == "0") {
+        console.log("here");
+        return "0.";
       }
       return output + text;
     default:
