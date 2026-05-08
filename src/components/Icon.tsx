@@ -1,4 +1,3 @@
-import cs from "classnames";
 import { Link } from "react-router-dom";
 
 type TIcon = {
@@ -10,7 +9,6 @@ type TIcon = {
 } & React.SVGAttributes<SVGSVGElement>;
 
 const Icon = (props: TIcon) => {
-  const { name, className, ...rest } = props;
   if (!props.icon)
     return <span style={{ width: "16px", height: "16px" }}></span>;
   return (

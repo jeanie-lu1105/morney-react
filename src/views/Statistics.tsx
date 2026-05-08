@@ -2,7 +2,7 @@ import Layout from "@/components/Layout";
 import { useState } from "react";
 import { CategorySection } from "./money/CategorySection";
 import "./statistics.scss";
-import { useRecords } from "@/hooks/useRecords";
+import { useRecords, type TRecordItem } from "@/hooks/useRecords";
 import { useTags } from "@/hooks/useTags";
 
 const Statistics = () => {
@@ -11,7 +11,7 @@ const Statistics = () => {
   const { getTagName } = useTags();
   const groupedRecords = records
     .filter((r) => r.category === category)
-    .reduce((result, record) => {
+    .reduce((result: any, record: any) => {
       const date = new Date(record.createdAt).toISOString().split("T")[0];
       if (!result[date]) {
         result[date] = [];
@@ -30,30 +30,32 @@ const Statistics = () => {
         className="statistics-category-section"
       />
 
-      {orderedGroupedRecords.map(([date, recordList]) => (
-        <table key={date}>
-          <thead>
-            <tr>
-              <th colSpan={3} style={{ textAlign: "left" }}>
-                {date}
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            {recordList.map((r) => (
-              <tr key={r.createdAt}>
-                <td>
-                  {r.tagIds.map((tagId) => (
-                    <span key={tagId}>{getTagName(tagId)}</span>
-                  ))}
-                </td>
-                <td>{r.note}</td>
-                <td>¥ {r.amount}</td>
+      {orderedGroupedRecords.map(
+        ([date, recordList] = ["", {} as TRecordItem[]]) => (
+          <table key={date}>
+            <thead>
+              <tr>
+                <th colSpan={3} style={{ textAlign: "left" }}>
+                  {date}
+                </th>
               </tr>
-            ))}
-          </tbody>
-        </table>
-      ))}
+            </thead>
+            <tbody>
+              {(recordList as TRecordItem[]).map((r: TRecordItem) => (
+                <tr key={r.createdAt}>
+                  <td>
+                    {r.tagIds.map((tagId: number) => (
+                      <span key={tagId}>{getTagName(tagId)}</span>
+                    ))}
+                  </td>
+                  <td>{r.note}</td>
+                  <td>¥ {r.amount}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        ),
+      )}
     </Layout>
   );
 };

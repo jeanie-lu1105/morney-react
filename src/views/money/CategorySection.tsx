@@ -35,7 +35,7 @@ type TCategory = keyof typeof categoryMap;
 type Props = {
   value: TCategory;
   onChange: (category: TCategory) => void;
-  className: string;
+  className?: string;
 };
 const CategorySection: React.FC<Props> = (props) => {
   const category = props.value;
@@ -48,7 +48,7 @@ const CategorySection: React.FC<Props> = (props) => {
             key={c}
             className={cs({
               selected: category === c,
-              [props.className]: true,
+              [props.className || ""]: true,
             })}
             onClick={() => {
               props.onChange(c);

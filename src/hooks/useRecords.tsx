@@ -44,3 +44,5 @@ const useRecords = () => {
 };
 
 export { useRecords };
+
+export type { TCategory, TRecordItem, TNewRecord };

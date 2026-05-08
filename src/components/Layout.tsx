@@ -8,7 +8,7 @@ import { useEffect, useRef } from "react";
 const Wrapper = styled.div`
   display: flex;
   height: 100vh;
-  flex-direction: number;
+  flex-direction: column;
 `;
 
 const Main = styled.main`

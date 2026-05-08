@@ -49,7 +49,7 @@ const Tag: React.FC = () => {
   const { findTag, updateTag, deleteTag } = useTags();
   const { id } = useParams<Params>();
   const tag = findTag(parseInt(id || "-1"));
-  const onChange = (e) => {
+  const onChange = (e: any) => {
     updateTag(tag.id, { name: e.target.value });
   };
   const history = useNavigate();
