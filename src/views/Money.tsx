@@ -23,9 +23,12 @@ const Money = () => {
   };
 
   const submit = () => {
-    addRecords(selected);
-    setSelected(defaultFormData);
-    alert("Save successfully!");
+    if (addRecords(selected)) {
+      setSelected(defaultFormData);
+      alert("Saved successfully");
+    } else {
+      alert("Failed to save");
+    }
   };
   return (
     <Layout>

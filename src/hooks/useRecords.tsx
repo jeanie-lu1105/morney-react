@@ -20,12 +20,21 @@ const localRecords = JSON.parse(
 const useRecords = () => {
   const [records, setRecords] = useState<TRecordItem[]>(localRecords);
   const addRecords = (newRecord: TNewRecord) => {
+    if (newRecord.amount <= 0) {
+      alert("金额必须大于0");
+      return false;
+    }
+    if (newRecord.tagIds.length === 0) {
+      alert("请选择标签");
+      return false;
+    }
     const record = {
       ...newRecord,
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString(),
     };
     setRecords(records.concat(record));
+    return true;
   };
 
   useUpdate(() => {
