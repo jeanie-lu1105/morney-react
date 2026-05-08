@@ -20,7 +20,6 @@ const useTags = () => {
       alert("标签名不能为空");
       return;
     }
-    console.log("add tag", tags);
     setTags([...tags, { id: createId(), name }]);
   };
   const findTag = (id: number) => tags?.filter((t) => t.id === id)[0];

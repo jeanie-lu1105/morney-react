@@ -4,19 +4,28 @@ import { NotesSection } from "@/views/money/NotesSection";
 import { CategorySection, type TCategory } from "@/views/money/CategorySection";
 import { NumberPadSection } from "@/views/money/NumberPadSection";
 import { useState } from "react";
+import { useRecords } from "@/hooks/useRecords.tsx";
 
-function Money() {
-  const [selected, setSelected] = useState({
-    tagIds: [] as number[],
-    note: "",
-    category: "-" as TCategory,
-    amount: 0,
-  });
+const defaultFormData = {
+  tagIds: [] as number[],
+  note: "",
+  category: "-" as TCategory,
+  amount: 0,
+};
+const Money = () => {
+  const [selected, setSelected] = useState(defaultFormData);
+  const { addRecords } = useRecords();
   const updateSelected = (obj: Partial<typeof selected>) => {
     setSelected({
       ...selected,
       ...obj,
     });
+  };
+
+  const submit = () => {
+    addRecords(selected);
+    setSelected(defaultFormData);
+    alert("Save successfully!");
   };
   return (
     <Layout>
@@ -35,9 +44,10 @@ function Money() {
       <NumberPadSection
         value={selected.amount}
         onChange={(amount) => updateSelected({ amount })}
+        onSubmit={submit}
       ></NumberPadSection>
     </Layout>
   );
-}
+};
 
 export default Money;
