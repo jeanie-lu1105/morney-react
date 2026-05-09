@@ -5,12 +5,11 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "predeploy": "vite build",
+    "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview",
     "serve": "serve dist",
-    "deploy": "gh-pages -d dist",
-    "homepage": "https://jeanie-lu1105.github.io/morney-react/"
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
     "@ant-design/icons": "^6.2.2",
