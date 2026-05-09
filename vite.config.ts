@@ -4,7 +4,7 @@ import path from "path";
 import svgr from "vite-plugin-svgr";
 // https://vite.dev/config/
 export default defineConfig({
-  base: "morney-react",
+  base: "/morney-react/",
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
