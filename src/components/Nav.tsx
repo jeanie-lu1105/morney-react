@@ -1,41 +1,62 @@
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import styled from "styled-components";
-import BookmarkIcon from "@icons/bookmark.svg?react";
-import ChartIcon from "@icons/chart.svg?react";
-import MoneyIcon from "@icons/money.svg?react";
+import { ICONS } from "@/constants/icon.const";
+
 const NavWrapper = styled.nav`
   box-shadow: 0 0 3px rgba(0, 0, 0, 0.25);
+  background: white;
 
   > ul {
     display: flex;
 
     > li {
       width: 33.3333%;
-      margin: 8px 0;
       text-align: center;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+
+      > a {
+        display: flex;
+        padding: 4px 0;
+        flex-direction: column;
+        align-items: center;
+        margin: 2px 0;
+
+        .icon {
+          width: 24px;
+          height: 24px;
+          fill: grey;
+        }
+
+        &.active-class {
+          color: #007bff;
+
+          .icon {
+            fill: #007bff;
+          }
+        }
+      }
     }
   }
 `;
+
+const generateClassName = (isActive: boolean) => {
+  return isActive ? "active-class" : "inactive-class";
+};
 
 const Nav = () => {
   return (
     <NavWrapper>
       <ul>
-        <li>
-          <BookmarkIcon width="24" height="24" />
-          <Link to="/tags">标签页面</Link>
-        </li>
-        <li>
-          <MoneyIcon width="24" height="24" />
-          <Link to="/money">记账页面</Link>
-        </li>
-        <li>
-          <ChartIcon width="24" height="24" />
-          <Link to="/statistics">统计页面</Link>
-        </li>
+        {ICONS.map((item, index) => (
+          <li key={index}>
+            <NavLink
+              to={item.to}
+              className={({ isActive }) => generateClassName(isActive)}
+            >
+              <item.icon className="icon" />
+              {item.name}
+            </NavLink>
+          </li>
+        ))}
       </ul>
     </NavWrapper>
   );

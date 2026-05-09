@@ -1,37 +1,25 @@
 import { Route, Routes, Navigate } from "react-router-dom";
-import Tags from "@components/Tags";
-import Money from "@components/Money";
+import Tags from "@/views/Tags";
+import Money from "@/views/Money";
+import Statistics from "@/views/Statistics";
+import ErrorPage from "./components/Error";
 import styled from "styled-components";
-import Statistics from "@components/Statistics";
-import Nav from "@components/Nav";
-
-const Wrapper = styled.div`
-  display: flex;
-  height: 100vh;
-  flex-direction: column;
+import { Tag } from "@/views/Tag";
+const AppWrapper = styled.div`
+  color: #333;
 `;
-
-const Main = styled.div`
-  border: 1px solid blue;
-  flex-grow: 1;
-  overflow: auto;
-`;
-
 function App() {
   return (
-    <>
-      <Wrapper>
-        <Main>
-          <Routes>
-            <Route path="/" element={<Navigate to="/money" />} />
-            <Route path="/tags" element={<Tags />} />
-            <Route path="/money" element={<Money />} />
-            <Route path="/statistics" element={<Statistics />} />
-          </Routes>
-        </Main>
-        <Nav />
-      </Wrapper>
-    </>
+    <AppWrapper>
+      <Routes>
+        <Route path="/" element={<Navigate to="/money" />} />
+        <Route path="tags" element={<Tags />} />
+        <Route path="tags/:id" element={<Tag />} />
+        <Route path="money" element={<Money />} />
+        <Route path="statistics" element={<Statistics />} />
+        <Route path="*" element={<ErrorPage message="Page not found" />} />
+      </Routes>
+    </AppWrapper>
   );
 }
 
